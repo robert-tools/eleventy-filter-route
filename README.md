@@ -1,21 +1,21 @@
-# 🗂️ @robert.tools/sample
+# 🗂️ @robert.tools/eleventy-filter-route
 
-<description>
+Filter to normalize link references according to the route.
 
 ## 📜 Usage
 
 ### 🟢 Installation
 
 ```bash
-npm install @robert.tools/sample
+npm install @robert.tools/eleventy-filter-route
 ```
 
 ### 📝 Sample usage
 
 ```typescript
-import { <name> } from '@robert.tools/sample';
+import { eleventy-filter-route } from '@robert.tools/eleventy-filter-route';
 
-<name>('hello'); // '<name>: hello'
+eleventy-filter-route('hello'); // 'eleventy-filter-route: hello'
 ```
 
 ## 🗃️ commands
