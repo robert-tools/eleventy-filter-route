@@ -1,18 +1,39 @@
-/**
- * 🧪 testing module
- * @version 1.0.0
- * @date 2026-09-06
- * @license MIT
- * @author Robert Willemelis <github.com/willi84>
- */
-import { sample } from './index';
+import fn from './index';
+import * as LIB from './index';
 
-describe('@robert.tools/eleventy-filter-route', () => {
-    it('should return a eleventy-filter-route string', () => {
-        expect(sample('hello')).toBe('sample: hello');
+describe('✅️ fn()', () => {
+    const FN = fn;
+    const listIsSortedBy = 'addedAt';
+    describe('DEV', () => {
+        it('should return the path with slashes', () => {
+            expect(FN('value')).toBe('/value/');
+            expect(FN('value', { listIsSortedBy })).toBe('/value/latest/');
+            expect(FN('value/foo')).toBe('/value/foo/');
+            expect(FN('/value/foo/')).toBe('/value/foo/');
+            expect(FN('home')).toBe('/home/');
+            expect(FN('home', { listIsSortedBy })).toBe('/home/latest/');
+        });
     });
-
-    it('should return a eleventy-filter-route string with empty input', () => {
-        expect(sample('')).toBe('sample: ');
+    describe('DEV', () => {
+        it('should return the path with slashes', () => {
+            const spy = jest.spyOn(LIB, 'getEnv').mockReturnValue('');
+            expect(FN('value')).toBe('/value/');
+            expect(FN('value', { listIsSortedBy })).toBe('/value/latest/');
+            expect(FN('value/foo')).toBe('/value/foo/');
+            expect(FN('/value/foo/')).toBe('/value/foo/');
+            expect(FN('home')).toBe('/home/');
+            expect(FN('home', { listIsSortedBy })).toBe('/home/latest/');
+            spy.mockRestore();
+        });
+    });
+    describe('PROD', () => {
+        it('should return the path with slashes', () => {
+            const spy = jest.spyOn(LIB, 'getEnv').mockReturnValue('production');
+            expect(FN('value')).toBe('/value/');
+            expect(FN('value', { listIsSortedBy })).toBe('/value/latest/');
+            expect(FN('home')).toBe('/');
+            expect(FN('home', { listIsSortedBy })).toBe('/latest/');
+            spy.mockRestore();
+        });
     });
 });

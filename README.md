@@ -13,9 +13,14 @@ npm install @robert.tools/eleventy-filter-route
 ### 📝 Sample usage
 
 ```typescript
-import { eleventy-filter-route } from '@robert.tools/eleventy-filter-route';
+import route from '@robert.tools/eleventy-filter-route';
 
-eleventy-filter-route('hello'); // 'eleventy-filter-route: hello'
+```
+
+## 📜 Usage
+
+```nunjucks
+{{ 'value' | route }} {# result: /value/ #}
 ```
 
 ## 🗃️ commands
